@@ -63,10 +63,12 @@ class AudioController {
   }
 
   void applyFilter() {
-    // TODO
+    _soLoud!.addGlobalFilter(FilterType.freeverbFilter);
+    _soLoud!.setFilterParameter(FilterType.freeverbFilter, 0, 0.2);
+    _soLoud!.setFilterParameter(FilterType.freeverbFilter, 2, 0.9);
   }
 
   void removeFilter() {
-    // TODO
+    _soLoud!.removeGlobalFilter(FilterType.freeverbFilter);
   }
 }
