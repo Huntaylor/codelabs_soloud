@@ -18,7 +18,12 @@ class AudioController {
   }
 
   Future<void> playSound(String assetKey) async {
-    _log.warning('Not implemented yet.');
+    try {
+      final source = await _soLoud!.loadAsset(assetKey);
+      await _soLoud!.play(source);
+    } catch (e) {
+      _log.severe("Cannot play sound '$assetKey'. Ignoring.", e);
+    }
   }
 
   Future<void> startMusic() async {

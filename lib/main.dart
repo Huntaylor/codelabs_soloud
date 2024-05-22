@@ -1,4 +1,5 @@
 import 'dart:developer' as dev;
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -64,6 +65,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   static const _gap = SizedBox(height: 16);
 
+  int? random;
+
+  @override
+  void initState() {
+    random = Random().nextInt(3) + 1;
+    super.initState();
+  }
+
   bool filterApplied = false;
 
   @override
@@ -76,7 +85,11 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             OutlinedButton(
               onPressed: () {
-                widget.audioController.playSound('assets/sounds/pew1.mp3');
+                widget.audioController
+                    .playSound('assets/sounds/pew$random.mp3');
+                setState(() {
+                  random = Random().nextInt(3) + 1;
+                });
               },
               child: const Text('Play Sound'),
             ),
