@@ -1,16 +1,20 @@
 import 'dart:async';
 
+import 'package:flutter_soloud/flutter_soloud.dart';
 import 'package:logging/logging.dart';
 
 class AudioController {
   static final Logger _log = Logger('AudioController');
 
+  SoLoud? _soLoud;
+
   Future<void> initialize() async {
-    // TODO
+    _soLoud = SoLoud.instance;
+    await _soLoud!.init();
   }
 
   void dispose() {
-    // TODO
+    _soLoud?.deinit();
   }
 
   Future<void> playSound(String assetKey) async {
